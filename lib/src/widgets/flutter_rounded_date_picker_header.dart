@@ -14,7 +14,8 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
       this.imageHeader,
       this.description = "",
       this.fontFamily,
-      this.style})
+      this.style,
+      this.removeYearButton = false})
       : super(key: key);
 
   final DateTime selectedDate;
@@ -37,6 +38,8 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
 
   /// Font
   final String? fontFamily;
+
+  final bool removeYearButton;
 
   void _handleChangeMode(DatePickerMode value) {
     if (value != mode) onModeChanged(value);
@@ -171,7 +174,7 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          yearButton,
+          if (!removeYearButton) ...[yearButton],
           dayButton,
           const SizedBox(height: 4.0),
           Visibility(
