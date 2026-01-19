@@ -47,7 +47,8 @@ class FlutterRoundedMonthPicker extends StatefulWidget {
       this.builderDay,
       this.listDateDisabled,
       this.onTapDay,
-      this.onMonthChange})
+      this.onMonthChange,
+      this.removeYearButton = false})
       : assert(!firstDate.isAfter(lastDate)),
 //        assert(selectedDate.isAfter(firstDate) || selectedDate.isAtSameMomentAs(firstDate)),
         super(key: key);
@@ -93,6 +94,8 @@ class FlutterRoundedMonthPicker extends StatefulWidget {
   final OnTapDay? onTapDay;
 
   final Function? onMonthChange;
+
+  final bool removeYearButton;
 
   @override
   _FlutterRoundedMonthPickerState createState() =>
@@ -205,6 +208,7 @@ class _FlutterRoundedMonthPickerState extends State<FlutterRoundedMonthPicker>
       builderDay: widget.builderDay,
       listDateDisabled: widget.listDateDisabled,
       onTapDay: widget.onTapDay,
+      removeYearButton: widget.removeYearButton,
     );
   }
 

@@ -1,10 +1,12 @@
+import 'dart:math' as math;
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_rounded_date_picker/src/era_mode.dart';
 import 'package:flutter_rounded_date_picker/src/material_rounded_date_picker_style.dart';
 import 'package:flutter_rounded_date_picker/src/thai_date_utils.dart';
-import 'dart:math' as math;
+import 'package:intl/intl.dart';
 
 /// Displays the days of a given month and allows choosing a day.
 ///
@@ -77,7 +79,8 @@ class FlutterRoundedDayPicker extends StatelessWidget {
       this.customWeekDays,
       this.builderDay,
       this.listDateDisabled,
-      this.onTapDay})
+      this.onTapDay,
+      this.removeYearButton = false})
       : assert(!firstDate.isAfter(lastDate)),
 //        assert(selectedDate.isAfter(firstDate) || selectedDate.isAtSameMomentAs(firstDate)),
         super(key: key);
@@ -116,6 +119,7 @@ class FlutterRoundedDayPicker extends StatelessWidget {
   final BuilderDayOfDatePicker? builderDay;
   final List<DateTime>? listDateDisabled;
   final OnTapDay? onTapDay;
+  final bool removeYearButton;
 
   /// Determines the way that drag start behavior is handled.
   ///
@@ -414,7 +418,9 @@ class FlutterRoundedDayPicker extends StatelessWidget {
           "$monthYearHeader ${calculateYearEra(era, displayedMonth.year)}"
               .replaceAll(RegExp("  "), " ");
     } else {
-      monthYearHeader = localizations.formatMonthYear(displayedMonth);
+      monthYearHeader = removeYearButton
+          ? DateFormat.MMMM().format(displayedMonth)
+          : localizations.formatMonthYear(displayedMonth);
     }
 
     return Padding(

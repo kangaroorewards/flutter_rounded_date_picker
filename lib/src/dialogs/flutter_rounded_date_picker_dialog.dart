@@ -33,7 +33,8 @@ class FlutterRoundedDatePickerDialog extends StatefulWidget {
       this.builderDay,
       this.listDateDisabled,
       this.onTapDay,
-      this.onMonthChange})
+      this.onMonthChange,
+      this.removeYearButton = false})
       : super(key: key);
 
   final DateTime initialDate;
@@ -79,6 +80,8 @@ class FlutterRoundedDatePickerDialog extends StatefulWidget {
   final OnTapDay? onTapDay;
 
   final Function? onMonthChange;
+
+  final bool removeYearButton;
 
   @override
   _FlutterRoundedDatePickerDialogState createState() =>
@@ -195,22 +198,24 @@ class _FlutterRoundedDatePickerDialogState
       case DatePickerMode.day:
       default:
         return FlutterRoundedMonthPicker(
-            key: _pickerKey,
-            selectedDate: _selectedDate,
-            onChanged: _handleDayChanged,
-            firstDate: widget.firstDate,
-            lastDate: widget.lastDate,
-            era: widget.era,
-            locale: widget.locale,
-            selectableDayPredicate: widget.selectableDayPredicate,
-            fontFamily: widget.fontFamily,
-            style: widget.styleDatePicker,
-            borderRadius: widget.borderRadius,
-            customWeekDays: widget.customWeekDays,
-            builderDay: widget.builderDay,
-            listDateDisabled: widget.listDateDisabled,
-            onTapDay: widget.onTapDay,
-            onMonthChange: widget.onMonthChange);
+          key: _pickerKey,
+          selectedDate: _selectedDate,
+          onChanged: _handleDayChanged,
+          firstDate: widget.firstDate,
+          lastDate: widget.lastDate,
+          era: widget.era,
+          locale: widget.locale,
+          selectableDayPredicate: widget.selectableDayPredicate,
+          fontFamily: widget.fontFamily,
+          style: widget.styleDatePicker,
+          borderRadius: widget.borderRadius,
+          customWeekDays: widget.customWeekDays,
+          builderDay: widget.builderDay,
+          listDateDisabled: widget.listDateDisabled,
+          onTapDay: widget.onTapDay,
+          onMonthChange: widget.onMonthChange,
+          removeYearButton: widget.removeYearButton,
+        );
     }
   }
 
